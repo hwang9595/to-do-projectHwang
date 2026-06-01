@@ -1,0 +1,58 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Список задач</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="container">
+    <h1>Список всех задач</h1>
+
+    <!-- Форма добавления задачи -->
+    <form action="{% url 'add_task' %}" method="POST" class="task-form">
+        {% csrf_token %}
+        <input type="text" name="title" placeholder="Что нужно сделать?" required class="task-input">
+        <button type="submit" class="btn btn-add">Добавить</button>
+    </form>
+
+    <!-- Вывод задач -->
+    <ul class="task-list">
+    {% for task in tasks %}
+        <!-- Класс task-item-completed добавится только если задача выполнена -->
+        <li class="task-item {% if task.is_completed %}task-item-completed{% endif %}">
+
+            <div class="task-info">
+                <strong class="task-title">{{ task.title }}</strong>
+                {% if task.is_completed %}
+                    <span class="status status-completed">(Выполнено)</span>
+                {% else %}
+                    <span class="status status-pending">(В процессе)</span>
+                {% endif %}
+            </div>
+
+            <div class="task-actions">
+                <!-- Динамический класс btn-status меняет цвет кнопки в зависимости от состояния -->
+                <a href="{% url 'complete_task' task.id %}"
+                   class="btn {% if task.is_completed %}btn-undo{% else %}btn-complete{% endif %}">
+                    {% if task.is_completed %} Вернуть {% else %} Сделано {% endif %}
+                </a>
+
+                <a href="{% url 'delete_task' task.id %}" class="btn btn-delete">
+                    Удалить
+                </a>
+            </div>
+
+        </li>
+    {% empty %}
+        <li class="tasks-empty">Задач пока нет!</li>
+    {% endfor %}
+    </ul>
+
+</div>
+</body>
+</html>

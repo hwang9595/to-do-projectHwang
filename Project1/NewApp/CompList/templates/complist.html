@@ -1,0 +1,39 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="container">
+       <h1>Список всех задач</h1>
+
+    <form action="/add-task/" method="POST" style="display: flex; gap: 10px; margin-bottom: 20px;">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Что нужно сделать?" required
+           style="flex: 1; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 1rem;">
+    <button type="submit"
+            style="background: #3182ce; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer;">
+        Добавить
+    </button>
+</form>
+    <!-- Пример вывода задач через цикл -->
+    <ul>
+    {% for task in tasks %}
+        <li>
+            <strong>{{ task.title }}</strong>
+            {% if task.is_completed %}(Выполнено){% else %}(В процессе){% endif %}
+        </li>
+    {% empty %}
+        <li>Задач пока нет!</li>
+    {% endfor %}
+    </ul>
+
+</div>
+</body>
+</html>

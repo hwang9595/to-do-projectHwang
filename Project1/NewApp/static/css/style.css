@@ -1,0 +1,136 @@
+
+body{
+margin: 0;
+height: 100vh;
+background-position: center;
+background-repeat: no-repeat;
+background-size:cover;
+background-image: url("https://images.alphacoders.com/135/1355218.jpg");
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+
+.task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.task-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+}
+
+
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+
+.task-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-title {
+    font-size: 1rem;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+
+.status {
+    font-size: 0.85rem;
+}
+.status-completed {
+    color: #48bb78;
+}
+.status-pending {
+    color: #a0aec0;
+}
+
+
+.task-item-completed .task-title {
+    text-decoration: line-through;
+    color: #a0aec0;
+}
+
+
+.btn {
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+
+}
+.btn:hover{
+background-color: gray;
+color: white;
+}
+
+
+
+.btn-add {
+    background: #3182ce;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.btn-complete {
+    background: #e6fffa;
+    color: green;
+
+}
+
+.btn-complete:hover{
+background-color: gray;
+color: black;
+}
+
+.btn-undo {
+    background: #edf2f7;
+    color: red;
+}
+
+.btn-delete {
+    background: #fff5f5;
+    color: black;
+}
+
+
+
+.tasks-empty {
+    color: #a0aec0;
+    text-align: center;
+    padding: 20px;
+}
